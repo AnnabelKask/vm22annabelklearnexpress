@@ -1,6 +1,6 @@
 console.log('hello');
-
-const express = require('nunjucks');
+const nunjucks = require('nunjucks');
+const express = require('express');
 const app = express();
 const port = 3000;
 
@@ -11,11 +11,20 @@ nunjucks.configure('views', {
 });
 
 app.get('/', (req, res) => {
-  res.render('index.html');
+  res.render('index.njk');
 });
 
-app.get('/page3', (req, res) => {
-    res.sendFile(__dirname +'/page2.html');
+app.get('/page2', (req, res) => {
+  res.render('page2.njk');
+});
+
+app.get('/form', (req, res) => {
+  console.log(req.query);
+  res.render('form.njk', req.query);
+});
+
+app.get('/form', (req, res) => {
+    res.sendFile(__dirname +'page2.html');
     console.log('oii keegi tuli')
   });
 
