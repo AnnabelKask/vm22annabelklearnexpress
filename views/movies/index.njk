@@ -1,0 +1,27 @@
+{% extends "partials/layout.njk"%}
+{%block content %}
+     <style>
+        table, th, td{
+            border: 1px solid pink;
+        }
+
+     </style>
+  <a href="/movies/add">Add</a>
+  
+  <table>
+    <thead>
+         <th>Id</th>
+        <th>Name</th>
+        <th>Year</th>
+    </thead>
+    <tbody>
+        {% for movie in movies%}
+        <tr>
+            <td> {{movie.id}} </td>
+            <td> {{movie.name}} </td>
+            <td> {{movie.year}} </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+  </table>
+{% endblock %}
