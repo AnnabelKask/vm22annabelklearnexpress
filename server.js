@@ -5,6 +5,10 @@ const app = express();
 const port = 3000;
 
 
+app.use(express.urlencoded({
+  extended:true
+}));
+
 nunjucks.configure('views', {
     autoescape: true,
     express: app
@@ -27,7 +31,18 @@ app.get('/form', (req, res) => {
     res.sendFile(__dirname +'page2.html');
     console.log('oii keegi tuli')
   });
-
+  
+  app.get('/circle', (req, res) => {
+    res.render('circle.njk');
+  });
+  
+  app.post('/circle', (req, res) => {
+    let area= Math.PI * req.body.radius * req.body.radius;
+    let circumference= 2*Math.PI * req.body.radius;
+    let volume= 4/3*Math.PI * req.body.radius* req.body.radius* req.body.radius;
+    res.render('circleAnswer.njk', {r: req.body.radius,a:area,c:circumference,v:volume});
+  });
+  
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
