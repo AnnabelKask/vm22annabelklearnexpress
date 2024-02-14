@@ -33,4 +33,15 @@ router.post('/add', (req, res)=>{
   res.redirect('/movies/');
 });
 
+router.get('/view', (req, res)=>{
+   let id= parseInt (req.query.id);
+   console.log(id);
+   let movies = fs.readFileSync('movies.json', 'utf-8');
+   movies = JSON.parse(movies);
+   let movie = movies.movies.find(m => m.id == id);
+   console.log(typeof movies.movies[0].id);
+   res.json(movie);
+   //res.render('movies/add.njk')
+});
+
 module.exports = router;
